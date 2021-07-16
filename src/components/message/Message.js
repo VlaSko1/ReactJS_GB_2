@@ -1,9 +1,10 @@
 import React from 'react';
-import './message.css';
-import './message_2.scss';
+//import './message.css';
+//import './message_2.scss';
+import styles from './message.module.css'
 
 export function Message(props) {
   return(
-    <p className="message__text view_scss">{props.text}</p>
+    <p className={[styles.message__text, styles.view_scss].join(' ') }>{props.text}</p>
   )
 }
