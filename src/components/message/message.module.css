@@ -1,6 +1,11 @@
-.view_scss {
-  text-shadow: 5px 3px 5px rgb(44, 143, 57);
-}
+
 .message__text {
-  text-decoration: underline;
+  margin-bottom: 6px;
+}
+
+.user__text {
+  color: blue;
+}
+.robot__text {
+  color: red;
 }
