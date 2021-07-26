@@ -1,11 +1,36 @@
 import React from 'react';
-import styles from './message.module.css'
+import styles from './message.module.css';
+import { ListItem, ListItemAvatar, ListItemText, Typography, Avatar } from '@material-ui/core';
+import { getDate } from '../../utils/myFunc';
+
 
 export function Message(props) {
-  const {Author, text} = props.message;
+  const {Author, text, date} = props.message;
   return(
-    <p className={styles.message__text}>
-      <span className={Author === "Robot" ? styles.robot__text : styles.user__text}>{Author}</span>: {text}
-    </p>
+    
+      <ListItem >
+        <ListItemAvatar>
+          <Avatar alt={Author.name} src={Author.avatar}/>
+        </ListItemAvatar>
+        <ListItemText 
+          primary={Author.name}
+          secondary={
+            <>
+            <Typography component={'span'} variant={'body2'}>
+              
+              {text}
+            </Typography > 
+            <br/>
+            {getDate(date)}
+            </>
+          }
+          />
+      </ListItem>
+    
   )
 }
+
+//<span className={Author.name === "Robot" ? styles.robot__text : styles.user__text}>{Author.name}</span>: {text} <br/>
+//      <span>{`${date.getDate()}:${date.getMonth()}:${date.getFullYear()}`}</span>
+
+//<p className={styles.message__text}>
