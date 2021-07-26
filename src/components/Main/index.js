@@ -1,6 +1,6 @@
-import { MessageField } from '../MessageField';
+import { MessageList } from '../MessageList';
 import { InputField } from '../InputField';
-import { ChatField } from '../ChatField';
+import { ChatList } from '../ChatList';
 import styles from './main.module.scss';
 
 
@@ -9,10 +9,10 @@ export function Main(props) {
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatField/>
+          <ChatList/>
         </div>
         <div className={styles.messageField} id="messageField">
-          <MessageField messageList={props.messageList} addMessage={props.addMessage} />
+          <MessageList messageList={props.messageList} addMessage={props.addMessage} />
         </div>
       </div>
 

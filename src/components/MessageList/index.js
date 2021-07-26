@@ -4,7 +4,7 @@ import { Message } from '../Message';
 
 
 
-export function MessageField(props) {
+export function MessageList(props) {
 
   
 

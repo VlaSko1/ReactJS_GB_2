@@ -7,7 +7,7 @@ const listChat = Array.from({ length: 10 }).map(() => ({
   name: faker.name.firstName(),
 }));
 
-export function ChatField() {
+export function ChatList() {
   return (
     <List>
       {
