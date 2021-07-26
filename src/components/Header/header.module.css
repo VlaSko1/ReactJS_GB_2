@@ -17,3 +17,28 @@ h3 {
 p {
   font-size: calc(8px + 2vmin);
 }
+
+.menu {
+  display: flex;
+}
+
+
+
+.menu__list {
+  
+  margin-right: calc(5px + 2vh);
+  
+  font-size: calc(8px + 1vh);
+}
+.menu__list:last-child {
+  margin-right: 0;
+}
+
+.menu__list a {
+  color: gray;
+  
+}
+.activeLink {
+  color: red !important;
+  border-bottom: 1px solid red !important;
+}

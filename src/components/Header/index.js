@@ -1,13 +1,38 @@
 import styles from './header.module.css';
+import { NavLink, Link } from 'react-router-dom';
 
 export function Header() {
-  function updatePage() {
-    window.location.reload();
-  }
+  
   return (
     <header>
       <p>Приветствуем вас в новой социальной сети:</p>
-      <h3 onClick={updatePage}>На связи</h3>
+      <Link to="/"><h3 >На связи</h3></Link>
+      <ul className={styles.menu}>
+        <li className={styles.menu__list}>
+          <NavLink activeClassName={styles.activeLink}
+            exact
+            to="/"
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className={styles.menu__list}>
+          <NavLink activeClassName={styles.activeLink}
+            exact
+            to="/profile"
+          >
+            Profile
+          </NavLink>
+        </li>
+        <li className={styles.menu__list}>
+          <NavLink activeClassName={styles.activeLink}
+            exact
+            to="/chats"
+          >
+            Chat
+          </NavLink>
+        </li>
+      </ul>
     </header>
   )
 }
