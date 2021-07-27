@@ -16,7 +16,7 @@ function getChats() {
     initChats[id] = {
       name: faker.random.word(),
       messages: getMessages(),
-    }
+    };
   }
   return initChats;
 }
@@ -48,10 +48,10 @@ function  getMessage() {
 
 function App() {
   let chats = getChats();
-  
-  
-  //const [messageList, setMessageList] = useState([]);
-  const [chatList, setChatList] = useState(chats);
+  //console.log(chats)
+
+  const [messageList, setMessageList] = useState([]);
+  //const [chatsList, setChatList] = useState(chats);
   const [text, setText] = useState('');
 
   const asyncAnswer = useCallback((time) => {
@@ -109,15 +109,13 @@ function App() {
     setText(e.target.value);
 
   }
-
-
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path='/'>
           <Home />
         </Route>
-        <Route exact path='/chats/:idChat?'>
+        <Route  path='/chats/:idChat?'>
           <Chats messageList={messageList} addMessage={addMessage} changeText={changeText} value={text} />
         </Route>
         <Route exact path='/profile'>
