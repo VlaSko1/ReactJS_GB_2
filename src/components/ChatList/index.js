@@ -1,5 +1,7 @@
 import faker from 'faker';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar} from '@material-ui/core';
+import { List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
+import styles from './chatList.module.scss';
 
 const listChat = Array.from({ length: 10 }).map(() => ({
   id: faker.datatype.uuid(),
@@ -7,17 +9,23 @@ const listChat = Array.from({ length: 10 }).map(() => ({
   name: faker.name.firstName(),
 }));
 
-export function ChatList() {
+export function ChatList(props) {
+  
+  const arrChatId = Object.keys(props.chats);
+
+
   return (
-    <List>
+    <List >
       {
-        listChat.map((item) => (<ListItem key={item.id}>
-          <ListItemAvatar >
-            <Avatar alt={item.name} src={item.avatar} />
-          </ListItemAvatar>
-          <ListItemText primary={item.name}/>
-        </ListItem>))
+        arrChatId.map((item) => (
+        <NavLink className={styles.link} activeClassName={styles.activeLink} to={`/chats/${item}`} key={item}>
+          <ListItem >
+            <ListItemText primary={props.chats[item].name} />
+          </ListItem>
+        </NavLink>))
       }
     </List>
   )
 }
+
+
