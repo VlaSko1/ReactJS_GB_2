@@ -50,9 +50,7 @@ function App() {
   }, [messageList, asyncAnswer])*/
 
 
-  useEffect(() => {
-    scrollFunc();
-  }, [chatsList])
+  
 
   /*const addMessage = (e) => {
     e.preventDefault();

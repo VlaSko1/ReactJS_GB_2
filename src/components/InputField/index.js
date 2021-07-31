@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function InputField(props) {
-  console.log(props.textChats);
-  console.log(props.chats);
   
   const inputRef = useRef(null);
   useEffect(() => {

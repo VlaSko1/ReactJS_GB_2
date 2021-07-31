@@ -1,12 +1,16 @@
 import styles from './messageField.module.scss';
 import { Message } from '../Message';
+import { useEffect } from 'react';
+import { scrollFunc } from '../../utils/myFunc';
 
 
 
 
 export function MessageList(props) {
 
-  
+  useEffect(() => {
+    scrollFunc();
+  }, [props.messageList]);
 
   return (
       
