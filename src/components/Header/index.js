@@ -26,7 +26,7 @@ export function Header() {
         </li>
         <li className={styles.menu__list}>
           <NavLink activeClassName={styles.activeLink}
-            exact
+            
             to="/chats"
           >
             Chat

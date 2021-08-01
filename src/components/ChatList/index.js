@@ -1,13 +1,6 @@
-import faker from 'faker';
-import { List, ListItem, ListItemAvatar, ListItemText, Avatar } from '@material-ui/core';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
 import styles from './chatList.module.scss';
-
-const listChat = Array.from({ length: 10 }).map(() => ({
-  id: faker.datatype.uuid(),
-  avatar: faker.image.avatar(),
-  name: faker.name.firstName(),
-}));
 
 export function ChatList(props) {
   
