@@ -9,7 +9,7 @@ export function Main(props) {
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatList/>
+          <ChatList chats={props.chats} idChat={props.idChat}/>
         </div>
         <div className={styles.messageField} id="messageField">
           <MessageList messageList={props.messageList} addMessage={props.addMessage} />
@@ -17,7 +17,7 @@ export function Main(props) {
       </div>
 
       <div className={styles.inputField}>
-        <InputField value={props.value} addMessage={props.addMessage} changeText={props.changeText} />
+        <InputField chats={props.chats} textChats={props.textChats} setTextChats={props.setTextChats} value={props.value} setChats={props.setChats} idChat={props.idChat} addMessage={props.addMessage} changeText={props.changeText} />
       </div>
     </main>
   )

@@ -1,18 +1,28 @@
-import styles from './app.module.css';
 import { useCallback, useEffect, useState } from 'react';
-import { Header } from '../Header';
-import { Main } from '../Main';
 import { generateTime } from '../../utils/myFunc';
+import { getObjectTextChats } from '../../utils/myFunc';
+import { getChats } from '../../utils/myFunc';
 import faker from 'faker';
 import joshuaraichur_128 from '../../asset/joshuaraichur_128.jpg';
 import { scrollFunc } from '../../utils/myFunc';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Home } from "../../pages/Home";
+import { Chats } from "../../pages/Chats";
+import { Profile } from "../../pages/Profile";
+
 
 
 function App() {
-  const [messageList, setMessageList] = useState([]);
-  const [text, setText] = useState('');
+  let chats = getChats();
+  let objTextChats = getObjectTextChats(chats);
+  
 
-  const asyncAnswer = useCallback((time) => {
+  //const [messageList, setMessageList] = useState([]);
+  const [chatsList, setChatList] = useState(chats);
+  //const [text, setText] = useState('');
+  const [textChats, setTextChats] = useState(objTextChats);
+
+  /*const asyncAnswer = useCallback((time) => {
     return setTimeout(() => {
       setMessageList([...messageList, {
         id: faker.datatype.uuid(),
@@ -20,15 +30,15 @@ function App() {
           name: 'Robot',
           id: 9999999,
           avatar: joshuaraichur_128
-        }, 
-        text: "Привет! Я робот!", 
+        },
+        text: "Привет! Я робот!",
         date: new Date()
       }]);
     }, time)
-  }, [messageList]);
+  }, [messageList]);*/
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (messageList.length !== 0) {
       if (messageList[messageList.length - 1].Author.name !== "Robot") {
         let timer = asyncAnswer(generateTime());
@@ -37,15 +47,12 @@ function App() {
         }
       }
     }
-  }, [messageList, asyncAnswer])
+  }, [messageList, asyncAnswer])*/
 
-  useEffect(() => {
-    if (messageList.length !== 0) {
-      scrollFunc();
-    }
-  }, [messageList])
 
-  const addMessage = (e) => {
+  
+
+  /*const addMessage = (e) => {
     e.preventDefault();
     if (text !== '') {
       setMessageList([...messageList, {
@@ -54,27 +61,39 @@ function App() {
           name: faker.name.firstName(),
           id: faker.datatype.uuid(),
           avatar: faker.image.avatar(),
-        }, 
-        text, 
+        },
+        text,
         date: new Date()
       }]);
       setText('');
     }
-  };
+  };*/
 
-  const changeText = (e) => {
+  /*const changeText = (e) => {
 
     setText(e.target.value);
 
-  }
-
-
+  }*/
   return (
-    <div className={styles.app}>
-      <Header />
-      <Main messageList={messageList} addMessage={addMessage} changeText={changeText} value={text} />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route  path='/chats/:idChat?'>
+          <Chats textChats={textChats} setTextChats={setTextChats}  setChats={setChatList} chats={chatsList}   />
+        </Route>
+        <Route exact path='/profile'>
+          <Profile />
+        </Route>
+        <Route path='/'>
+          <Home />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
