@@ -10,14 +10,15 @@ export function MessageList(props) {
 
   useEffect(() => {
     scrollFunc();
-  }, [props.messageList]);
+  }, [props.messageList])
+  
+
 
   return (
       
       <div className={styles.messageField__field}>
-        { props.messageList != undefined ? props.messageList.map((message) => <Message key={message.id} message={message} />) : <p>Выберите чат</p>}
+        { props.messageList !== undefined ? props.messageList.map((message) => <Message key={message.id} message={message} />) : <p>Выберите чат</p>}
       </div>
-      
-    
+
   )
 }

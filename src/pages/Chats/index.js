@@ -4,11 +4,8 @@ import { MainNoChat } from "../../components/MainNoChat";
 import { useParams } from "react-router-dom";
 export function Chats(props) {
   const { idChat } = useParams();
- /* console.log(idChat);
-  console.log(Object.keys(props.chats));
-  console.log(props.chats[idChat]);*/
   
-  if (!idChat || props.chats[idChat] == undefined) {
+  if (!idChat || props.chats[idChat] === undefined) {
     return (
       <>
       <Header />
