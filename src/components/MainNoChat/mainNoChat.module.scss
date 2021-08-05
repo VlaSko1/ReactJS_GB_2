@@ -20,5 +20,7 @@ main {
   min-width: 300px;
   overflow-y: auto;
 }
-
+.messageField__text {
+  padding: calc(8px + 2vmin);
+}
 

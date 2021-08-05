@@ -8,14 +8,14 @@ export function MainNoChat(props) {
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatList chats={props.chats}/>
+          <ChatList />
         </div>
         <div className={styles.messageField} id="messageField">
-          <MessageList messageList={props.messageList} addMessage={props.addMessage} />
+          <p className={styles.messageField__text}>Выберите чат</p>
         </div>
       </div>
 
-      
+
     </main>
   )
 }

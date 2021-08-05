@@ -101,3 +101,21 @@ export function getObjectTextChats(chat) {
   }
   return objTextChat;
 }
+
+
+/**
+ * 
+ * @returns (array) возвращает массив объектов чатов 
+ */
+ export function getChatsRedux() {
+  const initChats = {};
+  let countChats = Math.ceil((Math.random() + 1) * 3);
+  for (let i = 0; i < countChats; i++) {
+    let id = faker.datatype.uuid();
+    initChats[id] = {
+      name: faker.random.word(),
+      messages: getMessages(),
+    };
+  }
+  return initChats;
+}

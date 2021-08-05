@@ -2,10 +2,11 @@ import styles from './profileContent.module.scss';
 import { Footer } from "../Footer";
 import { useSelector, useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { createToggleShowAction } from '../../store/profile/actions';
+import { createToggleShowAction, getProfileSelector } from '../../store/profile';
+
 
 export function ProfileContent(props) {
-  const { showName, name } = useSelector((state) => state);
+  const { showName, name } = useSelector(getProfileSelector);
   const dispatch = useDispatch();
 
   const setShowName = useCallback(() => {

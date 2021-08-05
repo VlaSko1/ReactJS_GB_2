@@ -28,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 export function InputField(props) {
   
   const inputRef = useRef(null);
