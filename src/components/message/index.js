@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './message.module.css';
 import { ListItem, ListItemAvatar, ListItemText, Typography, Avatar } from '@material-ui/core';
-import { getDate } from '../../utils/myFunc';
+import { getFormatDate } from '../../utils/myFunc';
 
 
 export function Message(props) {
@@ -21,7 +21,7 @@ export function Message(props) {
               {text}
             </Typography > 
             <br/>
-            {getDate(date)}
+            {getFormatDate(date)}
             </>
           }
           />
@@ -30,7 +30,3 @@ export function Message(props) {
   )
 }
 
-//<span className={Author.name === "Robot" ? styles.robot__text : styles.user__text}>{Author.name}</span>: {text} <br/>
-//      <span>{`${date.getDate()}:${date.getMonth()}:${date.getFullYear()}`}</span>
-
-//<p className={styles.message__text}>

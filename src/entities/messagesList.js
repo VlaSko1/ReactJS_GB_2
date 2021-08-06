@@ -10,7 +10,7 @@ import { getMessages } from '../utils/myFunc';
  export const createMessagesList = (number = 5) => {
   const messagesList = {};
   for (let i = 0; i < number; i++) {
-    messagesList[i + 1] = getMessages();
+    messagesList[i] = getMessages();
   }
   return messagesList;
 }

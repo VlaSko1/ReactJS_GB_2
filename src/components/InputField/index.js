@@ -2,6 +2,11 @@ import { useRef, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import faker  from 'faker';
+import { useDispatch, useSelector } from 'react-redux';
+import { getValueChat, getChatById } from '../../store/chats';
+import { useParams } from 'react-router-dom';
+import { createChangeValueChat, getValuesByIdChat, createZeroChatValue } from '../../store/values';
+import { createAddMessageChat } from '../../store/messages';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +34,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function InputField(props) {
+
+  const { idChat } = useParams();
+
+  let value = useSelector(getValuesByIdChat(idChat));
   
+  
+  let dispatch = useDispatch();
+  
+
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current?.focus();
@@ -39,13 +52,36 @@ export function InputField(props) {
 
   function keyDown(e) {
     if (e.keyCode === 13) {
-      addMessage(e);
+      newAddMessage(e);
     }
 
   }
-  function changeText(e) {
-    props.setTextChats(Object.assign({}, props.textChats, {[props.idChat]: e.target.value,}));
+
+
+  const newChangeValue = (e) => {
+    dispatch(createChangeValueChat(idChat, e.target.value));
   }
+
+  const newAddMessage = (e) => {
+    e.preventDefault();
+    if (e.target.value === '') {
+      return;
+    }
+    const message = {};
+   
+    message.id = faker.datatype.uuid();
+    message.date = new Date();
+    message.Author = {
+      name: faker.name.firstName(),
+      id: faker.datatype.uuid(),
+      avatar: faker.image.avatar(),
+    };
+    message.text = value;
+
+    dispatch(createAddMessageChat(message, idChat));
+    dispatch(createZeroChatValue(idChat));
+  }
+
   function addMessage(e) {
     e.preventDefault();
     if (props.textChats[props.idChat] !== '') {
@@ -66,8 +102,8 @@ export function InputField(props) {
 
 
   return (
-    <form className={classes.root} onSubmit={addMessage}>
-      <TextField inputRef={inputRef} variant="filled" color={'primary'} autoFocus={true} value={props.textChats[props.idChat]} onChange={changeText} onKeyDown={keyDown} />
+    <form className={classes.root} onSubmit={newAddMessage}>
+      <TextField inputRef={inputRef} variant="filled" color={'primary'} autoFocus={true} value={value} onChange={newChangeValue} onKeyDown={keyDown} />
       <Button type="submit" variant="contained" color="primary">Отправить сообщение</Button>
     </form>
   )

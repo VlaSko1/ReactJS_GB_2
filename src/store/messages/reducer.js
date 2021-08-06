@@ -1,8 +1,10 @@
 import { GET_MESSAGES_LIST, ADD_MESSAGE_CHAT} from './actions';
+import { createMessagesList } from '../../entities/messagesList';
 
+const chatList = createMessagesList();
 
 export const initState = {
-  messagesList: {},
+  messagesList: {...chatList},
 }
 
 

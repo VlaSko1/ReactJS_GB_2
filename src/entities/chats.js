@@ -9,7 +9,7 @@ import { createChat } from "./chat"
  export const createChats = (number = 5) => {
   const chatsList = [];
   for (let i = 0; i < number; i++) {
-    chatsList.push(createChat(i + 1 + ''));
+    chatsList.push(createChat(i + ''));
   }
   return chatsList;
 }
