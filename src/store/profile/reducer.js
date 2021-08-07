@@ -1,4 +1,4 @@
-import { TOGGLE_SHOW_NAME_ACTION } from './actions';
+import { TOGGLE_SHOW_NAME_ACTION, CHANGE_NAME } from './actions';
 
 const userInitialState = {
   showName: false,
@@ -11,6 +11,12 @@ export const profileReducer = (state = userInitialState, action) => {
       return {
         ...state,
         showName: !state.showName,
+      }
+    }
+    case CHANGE_NAME : {
+      return {
+        ...state, 
+        name: action.payload,
       }
     }
     default: {

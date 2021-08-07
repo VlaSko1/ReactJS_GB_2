@@ -3,16 +3,15 @@ import { Main } from "../../components/Main";
 import { MainNoChat } from "../../components/MainNoChat";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getChatsArr } from '../../store/chats';
+import { getChatsIdArr } from '../../store/chats';
 
 
-export function Chats(props) {
+export function Chats() {
   const { idChat } = useParams();
-  const chats = useSelector(getChatsArr);
+  const chats = useSelector(getChatsIdArr);
   
   
-  
-  if (!idChat || chats[idChat] === undefined) {
+  if (!idChat || chats.find((chat) => chat === idChat) === undefined) {
     return (
       <>
       <Header />

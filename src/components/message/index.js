@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './message.module.css';
 import { ListItem, ListItemAvatar, ListItemText, Typography, Avatar } from '@material-ui/core';
 import { getFormatDate } from '../../utils/myFunc';
 
@@ -26,7 +25,6 @@ export function Message(props) {
           }
           />
       </ListItem>
-    
   )
 }
 

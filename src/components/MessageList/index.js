@@ -10,7 +10,7 @@ import joshuaraichur_128 from '../../asset/joshuaraichur_128.jpg';
 
 
 
-export function MessageList(props) {
+export function MessageList() {
 
   const { idChat } = useParams();
 
@@ -36,7 +36,7 @@ export function MessageList(props) {
         date: new Date()
       }, idChat));
     }, time)
-  }, [messageList]);
+  }, [dispatch, idChat]);
 
 
   useEffect(() => {

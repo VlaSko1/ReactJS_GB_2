@@ -4,7 +4,7 @@ import { ChatList } from '../ChatList';
 import styles from './main.module.scss';
 
 
-export function Main(props) {
+export function Main() {
   return (
     <main>
       <div className={styles.chatMessageField}>

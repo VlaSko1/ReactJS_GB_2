@@ -1,9 +1,8 @@
-import { MessageList } from '../MessageList';
 import { ChatList } from '../ChatList';
 import styles from './mainNoChat.module.scss';
 
 
-export function MainNoChat(props) {
+export function MainNoChat() {
   return (
     <main>
       <div className={styles.chatMessageField}>

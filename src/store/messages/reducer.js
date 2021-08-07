@@ -1,4 +1,4 @@
-import { GET_MESSAGES_LIST, ADD_MESSAGE_CHAT} from './actions';
+import { GET_MESSAGES_LIST, ADD_MESSAGE_CHAT, DEL_MESSAGES_CHAT } from './actions';
 import { createMessagesList } from '../../entities/messagesList';
 
 const chatList = createMessagesList();
@@ -18,10 +18,29 @@ export const messagesReducer = (state = initState, action) => {
       }
     }
     case ADD_MESSAGE_CHAT : {
+      if (state.messagesList.hasOwnProperty(action.payload.idChat)) {
+        return {
+          messagesList: {
+            ...state.messagesList, 
+            [action.payload.idChat]: [...state.messagesList[action.payload.idChat], action.payload.message] 
+          }
+        }
+      } else {
+        return {
+          messagesList: {
+            ...state.messagesList, 
+            [action.payload.idChat]: [action.payload.message] 
+          }
+        }
+      }
+    }
+    case DEL_MESSAGES_CHAT : {
+      const newMessagesList = {};
+      Object.assign(newMessagesList, state.messagesList);
+      delete newMessagesList[action.payload];
       return {
         messagesList: {
-          ...state.messagesList, 
-          [action.payload.idChat]: [...state.messagesList[action.payload.idChat], action.payload.message] 
+          ...newMessagesList,
         }
       }
     }
