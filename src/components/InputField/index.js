@@ -2,6 +2,10 @@ import { useRef, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import faker  from 'faker';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { createChangeValueChat, getValuesByIdChat, createZeroChatValue } from '../../store/values';
+import { createAddMessageChat } from '../../store/messages';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,48 +32,58 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+export function InputField() {
 
+  const { idChat } = useParams();
 
-export function InputField(props) {
+  let value = useSelector(getValuesByIdChat(idChat));
   
+  
+  let dispatch = useDispatch();
+  
+
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current?.focus();
-  }, [props.textChats]);
+  }, [value]);
 
   const classes = useStyles();
 
   function keyDown(e) {
     if (e.keyCode === 13) {
-      addMessage(e);
+      newAddMessage(e);
     }
 
   }
-  function changeText(e) {
-    props.setTextChats(Object.assign({}, props.textChats, {[props.idChat]: e.target.value,}));
+
+
+  const newChangeValue = (e) => {
+    dispatch(createChangeValueChat(idChat, e.target.value));
   }
-  function addMessage(e) {
+
+  const newAddMessage = (e) => {
     e.preventDefault();
-    if (props.textChats[props.idChat] !== '') {
-      props.setChats(Object.assign({}, props.chats, 
-        {[props.idChat]: {name: props.chats[props.idChat].name, messages: [...props.chats[props.idChat].messages, 
-        { id: faker.datatype.uuid(),
-        Author: {
-          name: faker.name.firstName(),
-          id: faker.datatype.uuid(),
-          avatar: faker.image.avatar(),
-        },
-        text: props.textChats[props.idChat],
-        date: new Date()
-      }]}}));
-      props.setTextChats(Object.assign({}, props.textChats, {[props.idChat]:''}));
+    if (value === '') {
+      return;
     }
-  }
+    const message = {};
+   
+    message.id = faker.datatype.uuid();
+    message.date = new Date();
+    message.Author = {
+      name: faker.name.firstName(),
+      id: faker.datatype.uuid(),
+      avatar: faker.image.avatar(),
+    };
+    message.text = value;
 
+    dispatch(createAddMessageChat(message, idChat));
+    dispatch(createZeroChatValue(idChat));
+  }
 
   return (
-    <form className={classes.root} onSubmit={addMessage}>
-      <TextField inputRef={inputRef} variant="filled" color={'primary'} autoFocus={true} value={props.textChats[props.idChat]} onChange={changeText} onKeyDown={keyDown} />
+    <form className={classes.root} onSubmit={newAddMessage}>
+      <TextField inputRef={inputRef} variant="filled" color={'primary'} autoFocus={true} value={value} onChange={newChangeValue} onKeyDown={keyDown} />
       <Button type="submit" variant="contained" color="primary">Отправить сообщение</Button>
     </form>
   )

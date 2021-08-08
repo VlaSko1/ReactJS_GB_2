@@ -11,13 +11,14 @@ export const generateTime = (maxLimit = 2001) => Math.floor(Math.random() * maxL
  * @param {Date (object)} date 
  * @returns {string} возвращает строку даты в формате: 15:16:16 23.07.2021
  */
-export const getDate = (date) => {
+export const getFormatDate = (date) => {
   let mounth = getTwoNumber(date.getMonth() + 1); 
   let hour = getTwoNumber(date.getHours()) ;
   let minute = getTwoNumber(date.getMinutes());
   let second = getTwoNumber(date.getSeconds());
+  let day = getTwoNumber(date.getDate());
   
-  return `${hour}:${minute}:${second} ${date.getDate()}.${mounth}.${date.getFullYear()}`;
+  return `${hour}:${minute}:${second} ${day}.${mounth}.${date.getFullYear()}`;
 
   function getTwoNumber(number) {
     let string = number + '';
@@ -57,7 +58,7 @@ export function getChats() {
  * 
  * @returns (array) возвращает массив сообщений
  */
-function getMessages() {
+export function getMessages() {
   let messages = [];
   const countMessages = Math.ceil((Math.random() + 1) * 5);
   for (let i = 0; i < countMessages; i++) {
@@ -100,4 +101,22 @@ export function getObjectTextChats(chat) {
     objTextChat[arrChat[i]] = '';
   }
   return objTextChat;
+}
+
+
+/**
+ * 
+ * @returns (array) возвращает массив объектов чатов 
+ */
+ export function getChatsRedux() {
+  const initChats = {};
+  let countChats = Math.ceil((Math.random() + 1) * 3);
+  for (let i = 0; i < countChats; i++) {
+    let id = faker.datatype.uuid();
+    initChats[id] = {
+      name: faker.random.word(),
+      messages: getMessages(),
+    };
+  }
+  return initChats;
 }

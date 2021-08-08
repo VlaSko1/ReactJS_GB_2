@@ -4,20 +4,20 @@ import { ChatList } from '../ChatList';
 import styles from './main.module.scss';
 
 
-export function Main(props) {
+export function Main() {
   return (
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatList chats={props.chats} idChat={props.idChat}/>
+          <ChatList/>
         </div>
         <div className={styles.messageField} id="messageField">
-          <MessageList messageList={props.messageList} addMessage={props.addMessage} />
+          <MessageList />
         </div>
       </div>
 
       <div className={styles.inputField}>
-        <InputField chats={props.chats} textChats={props.textChats} setTextChats={props.setTextChats} value={props.value} setChats={props.setChats} idChat={props.idChat} addMessage={props.addMessage} changeText={props.changeText} />
+        <InputField />
       </div>
     </main>
   )
