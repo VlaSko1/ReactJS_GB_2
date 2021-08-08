@@ -7,7 +7,7 @@ import styles from './chatList.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { getChats } from '../../store/chats';
 import { createDelChatByIdActions, createAddChatActions } from '../../store/chats';
-import { createDelMessagesChat } from '../../store/messages';
+import { createDeleteMessagesChat } from '../../store/messages';
 import faker from 'faker';
 
 
@@ -63,7 +63,7 @@ export function ChatList() {
   }
 
   const deletMessagesList = (idChat) => {
-    dispatch(createDelMessagesChat(idChat));
+    dispatch(createDeleteMessagesChat(idChat));
   }
 
   return (

@@ -1,10 +1,10 @@
-export const GET_MESSAGES_LIST = 'MESSAGES::GET_MESSAGES_LIST';
+export const ADD_MESSAGES_LIST = 'MESSAGES::ADD_MESSAGES_LIST';
 export const ADD_MESSAGE_CHAT = 'MESSAGES::ADD_MESSAGE_CHAT';
-export const DEL_MESSAGES_CHAT = 'MESSAGES::DEL_MESSAGES_CHAT';
+export const DELETE_MESSAGES_CHAT = 'MESSAGES::DELETE_MESSAGES_CHAT';
 
 
-export const createGetMessagesListActions = (messagesList) => ({
-  type: GET_MESSAGES_LIST, 
+export const createAddMessagesListActions = (messagesList) => ({
+  type: ADD_MESSAGES_LIST, 
   payload: messagesList,
 });
 
@@ -16,7 +16,7 @@ export const createAddMessageChat = (message, idChat) => ({
   }
 });
 
-export const createDelMessagesChat = (idChat) => ({
-  type: DEL_MESSAGES_CHAT,
+export const createDeleteMessagesChat = (idChat) => ({
+  type: DELETE_MESSAGES_CHAT,
   payload: idChat,
 });

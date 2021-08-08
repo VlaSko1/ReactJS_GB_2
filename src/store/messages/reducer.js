@@ -1,4 +1,4 @@
-import { GET_MESSAGES_LIST, ADD_MESSAGE_CHAT, DEL_MESSAGES_CHAT } from './actions';
+import { ADD_MESSAGES_LIST, ADD_MESSAGE_CHAT, DELETE_MESSAGES_CHAT } from './actions';
 import { createMessagesList } from '../../entities/messagesList';
 
 const chatList = createMessagesList();
@@ -10,7 +10,7 @@ export const initState = {
 
 export const messagesReducer = (state = initState, action) => {
   switch (action.type) {
-    case GET_MESSAGES_LIST : {
+    case ADD_MESSAGES_LIST : {
       return {
         messagesList: {
           ...action.payload,
@@ -34,7 +34,7 @@ export const messagesReducer = (state = initState, action) => {
         }
       }
     }
-    case DEL_MESSAGES_CHAT : {
+    case DELETE_MESSAGES_CHAT : {
       const newMessagesList = {};
       Object.assign(newMessagesList, state.messagesList);
       delete newMessagesList[action.payload];

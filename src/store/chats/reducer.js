@@ -1,4 +1,4 @@
-import {GET_CHATS_LIST, ADD_CHAT, DELETE_CHAT} from './actions';
+import {ADD_CHATS_LIST, ADD_CHAT, DELETE_CHAT} from './actions';
 import { createChats } from '../../entities/chats';
 
 const chatList = createChats();
@@ -9,7 +9,7 @@ export const initState = {
 
 export const chatsReducer = (state = initState, action) => {
   switch (action.type) {
-    case GET_CHATS_LIST : {
+    case ADD_CHATS_LIST : {
       return {
         chats: [...action.payload],
       }

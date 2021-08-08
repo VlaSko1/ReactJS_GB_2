@@ -12,7 +12,7 @@ function App() {
           <Home />
         </Route>
         <Route  path='/chats/:idChat?'>
-          <Chats />
+          <Chats/>
         </Route>
         <Route exact path='/profile'>
           <Profile />

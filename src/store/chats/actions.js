@@ -1,9 +1,9 @@
-export const GET_CHATS_LIST = 'CHATS::GET_CHATS_LIST';
+export const ADD_CHATS_LIST = 'CHATS::ADD_CHATS_LIST';
 export const ADD_CHAT = 'CHATS::ADD_CHAT';
 export const DELETE_CHAT = 'CHATS::DELETE_CHAT';
 
-export const createGetChatsListActions = (chatList) => ({
-  type: GET_CHATS_LIST, 
+export const createAddChatsListActions = (chatList) => ({
+  type: ADD_CHATS_LIST, 
   payload: chatList,
 });
 
