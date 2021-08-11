@@ -5,7 +5,7 @@ import faker  from 'faker';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createChangeValueChat, getValuesByIdChat, createZeroChatValue } from '../../store/values';
-import { createAddMessageChat } from '../../store/messages';
+import {  createAddMessageWithThunk } from '../../store/messages';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +77,9 @@ export function InputField() {
     };
     message.text = value;
 
-    dispatch(createAddMessageChat(message, idChat));
+
+    dispatch(createAddMessageWithThunk(message, idChat));
+    //dispatch(createAddMessageChat(message, idChat));
     dispatch(createZeroChatValue(idChat));
   }
 

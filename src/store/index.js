@@ -1,8 +1,11 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { profileReducer } from './profile';
 import { messagesReducer } from './messages';
 import { chatsReducer } from './chats';
 import { valuesReducer } from './values';
+import thunk from 'redux-thunk';
+
+const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   profile: profileReducer,
@@ -11,6 +14,4 @@ const rootReducer = combineReducers({
   values: valuesReducer,
 
 })
-export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&                        
-  window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const store = createStore(rootReducer, composeEnchancers(applyMiddleware(thunk)));
