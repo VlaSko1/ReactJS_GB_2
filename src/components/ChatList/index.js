@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ListItemSecondaryAction, IconButton, TextField, Button } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import styles from './chatList.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
-import { getChats } from '../../store/chats';
-import { createDelChatByIdActions, createAddChatActions } from '../../store/chats';
-import { createDeleteMessagesChat } from '../../store/messages';
-import faker from 'faker';
-
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -25,46 +19,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginTop: theme.spacing(1),
     width: '130px',
-    
-  }
-  
+  }  
 }));
 
-export function ChatList() {
-
-  let [chatName, setChatName ] = useState('');
-
-  const changeChatName = (e) => {
-    setChatName(e.target.value);
-  }
-
-  const addChat = () => {
-    
-    if (chatName === '') {
-      return;
-    } 
-    const chat = {};
-    chat.name = chatName;
-    chat.avatar = faker.image.avatar();
-    chat.idChat = faker.datatype.uuid();
-    dispatch(createAddChatActions(chat));
-    setChatName('');
-  } 
-
+export function ChatList({chats, chatName, changeChatName,  addChat, deleteChat, deletMessagesList}) {
   const classes = useStyles();
-
-  const dispatch = useDispatch();
-
-  const chats = useSelector(getChats);
-
-  const deleteChat = (idChat) => {
-    console.log();
-    dispatch(createDelChatByIdActions(idChat));
-  }
-
-  const deletMessagesList = (idChat) => {
-    dispatch(createDeleteMessagesChat(idChat));
-  }
 
   return (
     <List >

@@ -79,7 +79,7 @@ function  getMessage() {
   Author.id = faker.datatype.uuid();
   Author.avatar = faker.image.avatar();
   let id = faker.datatype.uuid();
-  let date = faker.date.past();
+  let date = getFormatDate(faker.date.past());
   return {
     text,
     Author,
