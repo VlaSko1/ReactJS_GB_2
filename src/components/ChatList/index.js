@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     height: '52px',
     fontSize: '25px'
-    
+
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginTop: theme.spacing(1),
     width: '130px',
-  }  
+  }
 }));
 
-export function ChatList({chats, chatName, changeChatName,  addChat, deleteChat, deletMessagesList}) {
+export function ChatList({ chats, chatName, changeChatName, addChat, deleteChat, deletMessagesList }) {
   const classes = useStyles();
 
   return (
