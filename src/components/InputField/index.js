@@ -5,7 +5,8 @@ import faker  from 'faker';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createChangeValueChat, getValuesByIdChat, createZeroChatValue } from '../../store/values';
-import { createAddMessageChat } from '../../store/messages';
+import {  createAddMessageWithThunk } from '../../store/messages';
+import { getFormatDate } from '../../utils/myFunc';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +70,7 @@ export function InputField() {
     const message = {};
    
     message.id = faker.datatype.uuid();
-    message.date = new Date();
+    message.date = getFormatDate(new Date());
     message.Author = {
       name: faker.name.firstName(),
       id: faker.datatype.uuid(),
@@ -77,7 +78,9 @@ export function InputField() {
     };
     message.text = value;
 
-    dispatch(createAddMessageChat(message, idChat));
+
+    dispatch(createAddMessageWithThunk(message, idChat));
+    //dispatch(createAddMessageChat(message, idChat));
     dispatch(createZeroChatValue(idChat));
   }
 

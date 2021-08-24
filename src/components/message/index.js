@@ -1,12 +1,11 @@
 import React from 'react';
 import { ListItem, ListItemAvatar, ListItemText, Typography, Avatar } from '@material-ui/core';
-import { getFormatDate } from '../../utils/myFunc';
 
 
 export function Message(props) {
   const {Author, text, date} = props.message;
   return(
-    
+      
       <ListItem >
         <ListItemAvatar>
           <Avatar alt={Author.name} src={Author.avatar}/>
@@ -20,7 +19,7 @@ export function Message(props) {
               {text}
             </Typography > 
             <br/>
-            {getFormatDate(date)}
+            {date}
             </>
           }
           />

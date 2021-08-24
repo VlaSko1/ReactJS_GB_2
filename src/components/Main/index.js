@@ -1,7 +1,7 @@
 import { MessageList } from '../MessageList';
 import { InputField } from '../InputField';
-import { ChatList } from '../ChatList';
 import styles from './main.module.scss';
+import { ChatListContainer } from '../../containers/ChatListContainer';
 
 
 export function Main() {
@@ -9,7 +9,7 @@ export function Main() {
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatList/>
+          <ChatListContainer/>
         </div>
         <div className={styles.messageField} id="messageField">
           <MessageList />

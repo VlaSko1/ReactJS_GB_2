@@ -1,4 +1,4 @@
-import { ChatList } from '../ChatList';
+import { ChatListContainer } from '../../containers/ChatListContainer';
 import styles from './mainNoChat.module.scss';
 
 
@@ -7,7 +7,7 @@ export function MainNoChat() {
     <main>
       <div className={styles.chatMessageField}>
         <div className={styles.chatField}>
-          <ChatList />
+          <ChatListContainer />
         </div>
         <div className={styles.messageField} id="messageField">
           <p className={styles.messageField__text}>Выберите чат</p>

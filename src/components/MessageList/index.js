@@ -1,21 +1,20 @@
 import styles from './messageField.module.scss';
 import { Message } from '../Message';
-import { useEffect, useCallback } from 'react';
-import { scrollFunc, generateTime } from '../../utils/myFunc';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { scrollFunc} from '../../utils/myFunc';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getMessagesByIdChat, createAddMessageChat } from '../../store/messages';
-import faker from 'faker';
-import joshuaraichur_128 from '../../asset/joshuaraichur_128.jpg';
+import { getMessagesByIdChat} from '../../store/messages';
 
 
 
-export function MessageList() {
+
+export function MessageList( ) {
 
   const { idChat } = useParams();
 
   const messageList = useSelector(getMessagesByIdChat(idChat));
-  const dispatch = useDispatch();
+  
 
   useEffect(() => {
     scrollFunc();
@@ -23,7 +22,7 @@ export function MessageList() {
 
 
 
-  const asyncAnswer = useCallback((time) => {
+  /*const asyncAnswer = useCallback((time) => {
     return setTimeout(() => {
       dispatch(createAddMessageChat({
         id: faker.datatype.uuid(),
@@ -49,7 +48,7 @@ export function MessageList() {
       }
     }
   }, [messageList, asyncAnswer])
-  
+  */
 
 
   return (
