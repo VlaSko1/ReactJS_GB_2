@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom';
 import styles from './signUp.module.scss';
 import Button from '@material-ui/core/Button';
 import { Redirect } from "react-router-dom";
+import { createSignUpWithThunk, getErrorAuth } from '../../store/auth';
+import { useDispatch, useSelector } from "react-redux";
 
 
 export const SignUp = () => {
+
+  const dispatch = useDispatch();
+  let error = useSelector(getErrorAuth);
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  //const [error, setError] = useState("");
 
   const handlePassChange = (e) => {
     setPassword(e.target.value);
@@ -20,7 +25,12 @@ export const SignUp = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+
+    dispatch(createSignUpWithThunk(email, password));
+  }
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -32,10 +42,10 @@ export const SignUp = () => {
       setError(error.message);
       
     }
-  };
+  };*/
 
-
-  if (Boolean(firebase.auth().currentUser)) {
+ 
+  if (Boolean(firebase.auth().currentUser)) {  // TODO попробуй просто заменить на auth из стора
     return <Redirect to={{ pathname: "/" }} />
   }
   return (

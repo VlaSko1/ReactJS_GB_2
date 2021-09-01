@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import styles from './signIn.module.scss';
 import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
+import { createSignInWithThunk, getErrorAuth } from '../../store/auth';
+import { useDispatch, useSelector } from "react-redux";
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  //const [error, setError] = useState("");
+  const dispatch = useDispatch();
+  let error = useSelector(getErrorAuth);
 
   const handlePassChange = (e) => {
     setPassword(e.target.value);
@@ -18,8 +22,11 @@ export const SignIn = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    
+    dispatch(createSignInWithThunk(email, password));
+    /*e.preventDefault();
     setError("");
 
     try {
@@ -27,10 +34,10 @@ export const SignIn = () => {
       return <Redirect to={{ pathname: "/" }} />
     } catch (error) {
       setError(error.message);
-    }
+    }*/
   };
 
-  if (Boolean(firebase.auth().currentUser)) {
+  if (Boolean(firebase.auth().currentUser)) {   // TODO попробуй просто заменить на auth из стора
     return <Redirect to={{ pathname: "/" }} />
   }
   return (

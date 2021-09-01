@@ -6,25 +6,32 @@ import { ApiTest } from "../../pages/ApiTest";
 import { SignIn } from "../../components/SignIn";
 import { SignUp } from "../../components/SignUp";
 import { MainContent } from '../../components/MainContent';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createSignInUP, createLogOut, getAuthStatus } from "../../store/auth";
 import firebase from "firebase";
 import PrivateRoute from "../../hocs/PrivateRoute";
 import PublicRoute from "../../hocs/PublicRoute";
 
 
+
 export const Routes = () => {
 
-  const [auth, setAuth] = useState(false);
+  const dispatch = useDispatch();
+  const auth = useSelector(getAuthStatus);
+  //const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setAuth(true);
+        dispatch(createSignInUP());
+        //setAuth(true);
       } else {
-        setAuth(false);
+        dispatch(createLogOut());
+        //setAuth(false);
       }
     })
-  }, []);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
