@@ -16,7 +16,7 @@ export function ProfileContentRender({name, showName, setShowName, setName }) {
       setNewName('');
     }
   }
-
+  
   return (
     <main>
       <div className={styles.show_name_wrapper}>

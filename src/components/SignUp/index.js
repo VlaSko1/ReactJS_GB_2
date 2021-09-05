@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import styles from './signUp.module.scss';
@@ -6,16 +5,16 @@ import Button from '@material-ui/core/Button';
 import { Redirect } from "react-router-dom";
 import { createSignUpWithThunk, getErrorAuth } from '../../store/auth';
 import { useDispatch, useSelector } from "react-redux";
+import { getAuthStatus } from '../../store/auth';
 
 
 export const SignUp = () => {
 
   const dispatch = useDispatch();
   let error = useSelector(getErrorAuth);
-  
+  let authTrue = useSelector(getAuthStatus);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [error, setError] = useState("");
 
   const handlePassChange = (e) => {
     setPassword(e.target.value);
@@ -30,22 +29,9 @@ export const SignUp = () => {
 
     dispatch(createSignUpWithThunk(email, password));
   }
-  /*const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
-      
-    } catch (error) {
-      setError(error.message);
-      
-    }
-  };*/
-
  
-  if (Boolean(firebase.auth().currentUser)) {  // TODO попробуй просто заменить на auth из стора
+ 
+  if (authTrue) {  // TODO попробуй просто заменить на auth из стора
     return <Redirect to={{ pathname: "/" }} />
   }
   return (
@@ -75,7 +61,6 @@ export const SignUp = () => {
         <div>
           {error && <p className={styles.error_class}>{error}</p>}
           <Button variant="contained" color="primary" type="submit">Login</Button>
-
         </div>
         <hr />
         <p>

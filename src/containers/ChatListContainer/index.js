@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getChats } from '../../store/chats';
-import { createDelChatByIdActions, createAddChatActions } from '../../store/chats';
-import { createDeleteMessagesChat } from '../../store/messages';
 import faker from 'faker';
 import { ChatList } from '../../components/ChatList';
+import { chatsApi, messagesApi } from '../../api/firebase/request';
 
 
 export function ChatListContainer() {
 
+  const chats = useSelector(getChats);
+  
   let [chatName, setChatName] = useState('');
 
   const changeChatName = (e) => {
@@ -24,21 +25,18 @@ export function ChatListContainer() {
     chat.name = chatName;
     chat.avatar = faker.image.avatar();
     chat.idChat = faker.datatype.uuid();
-    dispatch(createAddChatActions(chat));
+
+    chatsApi.createChat(chat);
+    
     setChatName('');
   }
 
-  const dispatch = useDispatch();
-
-  const chats = useSelector(getChats);
-
-  const deleteChat = (idChat) => {
-    
-    dispatch(createDelChatByIdActions(idChat));
+  const deleteChat = (id) => {
+    chatsApi.deleteChat(id);
   }
 
-  const deletMessagesList = (idChat) => {
-    dispatch(createDeleteMessagesChat(idChat));
+  const deletMessagesList = (arrMessagesChatId) => {
+    messagesApi.deleteChatInMessagesList(arrMessagesChatId);
   }
 
   return <ChatList

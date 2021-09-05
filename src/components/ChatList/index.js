@@ -4,6 +4,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import styles from './chatList.module.scss';
+import faker from 'faker';
+import { getMessagesList } from '../../store/messages';
+import { useSelector } from 'react-redux';
+
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -25,6 +29,18 @@ const useStyles = makeStyles((theme) => ({
 export function ChatList({ chats, chatName, changeChatName, addChat, deleteChat, deletMessagesList }) {
   const classes = useStyles();
 
+  
+  const messagesList = useSelector(getMessagesList);
+  
+  const getMessagesIdByIdChat = (idChat) => {
+    const arrMessagesId = [];
+    const arrMessages = messagesList.filter((item) => item.idChat === idChat);
+    arrMessages.forEach((item) => {
+      arrMessagesId.push(item.id);
+    });
+    return arrMessagesId;
+  };
+
   return (
     <List >
       <TextField id="outlined-search" label="Создать чат" value={chatName} type="search" variant="outlined" onChange={changeChatName} className={classes.width} />
@@ -33,7 +49,7 @@ export function ChatList({ chats, chatName, changeChatName, addChat, deleteChat,
       </Button>
       {
         chats.map((item) => (
-          <NavLink className={styles.link} activeClassName={styles.activeLink} to={`/chats/${item.idChat}`} key={item.idChat}>
+          <NavLink className={styles.link} activeClassName={styles.activeLink} to={`/chats/${item.idChat}`} key={item.idChat || faker.datatype.uuid()}>
             <ListItem >
               <ListItemAvatar >
                 <Avatar alt={item.name} src={item.avatar} />
@@ -42,8 +58,8 @@ export function ChatList({ chats, chatName, changeChatName, addChat, deleteChat,
               <ListItemSecondaryAction>
                 <IconButton edge="end" aria-label="delete" onClick={(event) => {
                   event.preventDefault();
-                  deleteChat(item.idChat);
-                  deletMessagesList(item.idChat);
+                  deleteChat(item.id);
+                  deletMessagesList(getMessagesIdByIdChat(item.idChat));
                 }}>
                   <DeleteIcon />
                 </IconButton>

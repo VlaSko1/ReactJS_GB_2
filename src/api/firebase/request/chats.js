@@ -4,7 +4,12 @@ export const chatsRef = db.ref('chats');
 
 
 export const chatsApi = {
-  createPost: (title, content) => {
-    return chatsRef.push({title, content});
+  createChat: ({name, idChat, avatar}) => {
+    return chatsRef.push({name, idChat, avatar});
+  },
+  deleteChat: (id) => {
+    return chatsRef.child(id).remove();
   }
 }
+
+

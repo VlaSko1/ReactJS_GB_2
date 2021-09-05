@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import styles from './signIn.module.scss';
@@ -6,11 +5,12 @@ import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
 import { createSignInWithThunk, getErrorAuth } from '../../store/auth';
 import { useDispatch, useSelector } from "react-redux";
+import { getAuthStatus } from '../../store/auth';
 
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [error, setError] = useState("");
+  const authTrue = useSelector(getAuthStatus);
   const dispatch = useDispatch();
   let error = useSelector(getErrorAuth);
 
@@ -26,18 +26,9 @@ export const SignIn = () => {
     e.preventDefault();
     
     dispatch(createSignInWithThunk(email, password));
-    /*e.preventDefault();
-    setError("");
-
-    try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
-      return <Redirect to={{ pathname: "/" }} />
-    } catch (error) {
-      setError(error.message);
-    }*/
   };
 
-  if (Boolean(firebase.auth().currentUser)) {   // TODO попробуй просто заменить на auth из стора
+  if (authTrue) { 
     return <Redirect to={{ pathname: "/" }} />
   }
   return (

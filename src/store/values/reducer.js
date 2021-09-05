@@ -1,12 +1,8 @@
 import { CHANGE_VALUE, ZERO_CHAT_VALUE } from './actions';
-import { createValues } from '../../entities/values';
-
-const valuesList = createValues();
 
 export const initState = {
-  values: {...valuesList},
+  values: {},
 }
-
 
 export const valuesReducer = (state = initState, action) => {
   switch (action.type) {
@@ -26,11 +22,8 @@ export const valuesReducer = (state = initState, action) => {
         }
       }
     }
-    
-
     default: {
       return state;
     }
-
   }
 }
