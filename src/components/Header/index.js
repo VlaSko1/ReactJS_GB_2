@@ -32,6 +32,14 @@ export function Header() {
             Chat
           </NavLink>
         </li>
+        <li className={styles.menu__list}>
+          <NavLink activeClassName={styles.activeLink}
+            
+            to="/api_test"
+          >
+            ApiTest
+          </NavLink>
+        </li>
       </ul>
     </header>
   )

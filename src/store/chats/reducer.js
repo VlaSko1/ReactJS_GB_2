@@ -8,7 +8,7 @@ export const initState = {
 }
 
 export const chatsReducer = (state = initState, action) => {
-  switch (action.type) {
+  switch (action?.type) {
     case ADD_CHATS_LIST : {
       return {
         chats: [...action.payload],
