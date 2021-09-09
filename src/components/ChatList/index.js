@@ -27,7 +27,7 @@ export function ChatList({ chats, chatName, changeChatName, addChat, deleteChat,
 
   return (
     <List >
-      <TextField id="outlined-search" label="Создать чат" value={chatName} type="search" variant="outlined" onChange={changeChatName} className={classes.width} />
+      <TextField id="outlined-search" data-testid="outlined-search" label="Создать чат" value={chatName} type="search" variant="outlined" onChange={changeChatName} className={classes.width} />
       <Button variant="outlined" size="small" color="primary" className={classes.margin} onClick={addChat}>
         +
       </Button>
