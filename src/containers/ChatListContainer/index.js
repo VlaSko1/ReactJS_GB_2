@@ -33,7 +33,7 @@ export function ChatListContainer() {
   const chats = useSelector(getChats);
 
   const deleteChat = (idChat) => {
-    console.log();
+    
     dispatch(createDelChatByIdActions(idChat));
   }
 
