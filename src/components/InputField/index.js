@@ -39,10 +39,8 @@ export function InputField() {
 
   let value = useSelector(getValuesByIdChat(idChat));
   
-  
   let dispatch = useDispatch();
   
-
   const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current?.focus();
@@ -54,9 +52,7 @@ export function InputField() {
     if (e.keyCode === 13) {
       newAddMessage(e);
     }
-
   }
-
 
   const newChangeValue = (e) => {
     dispatch(createChangeValueChat(idChat, e.target.value));
@@ -69,7 +65,6 @@ export function InputField() {
     }
     const message = {};
    
-    message.id = faker.datatype.uuid();
     message.date = getFormatDate(new Date());
     message.Author = {
       name: faker.name.firstName(),
@@ -77,10 +72,9 @@ export function InputField() {
       avatar: faker.image.avatar(),
     };
     message.text = value;
-
-
+    
     dispatch(createAddMessageWithThunk(message, idChat));
-    //dispatch(createAddMessageChat(message, idChat));
+    
     dispatch(createZeroChatValue(idChat));
   }
 

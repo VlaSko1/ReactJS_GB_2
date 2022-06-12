@@ -1,33 +1,25 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Home } from "../../pages/Home";
-import { Chats } from "../../pages/Chats";
-import { Profile } from "../../pages/Profile";
-import { ApiTest } from "../../pages/ApiTest";
+import { useDispatch, useSelector } from 'react-redux';
+import { Routes } from '../Routes';
+import { useEffect } from 'react';
+import { initChats } from "../../store/chats";
+import { initMessagesList } from '../../store/messages';
+import { getAuthStatus } from '../../store/auth';
 
 function App() {
+  
+  let auth = useSelector(getAuthStatus);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initChats())
+  }, [dispatch, auth]);
+
+  useEffect(() => {
+    dispatch(initMessagesList())
+  }, [dispatch, auth]);
 
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/'>
-          <Home />
-        </Route>
-        <Route  path='/chats/:idChat?'>
-          <Chats/>
-        </Route>
-        <Route exact path='/profile'>
-          <Profile />
-        </Route>
-        <Route path='/api_test'>
-          <ApiTest />
-        </Route>
-        <Route path='/'>
-          <Home />
-        </Route>
-        
-      </Switch>
-    </BrowserRouter>
+    <Routes />
   );
 }
 

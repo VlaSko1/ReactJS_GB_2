@@ -7,6 +7,7 @@ header {
   justify-content: space-around;
   align-items: center;
 } 
+
 h3 {
   text-transform: uppercase;
   font-family: 'Times New Roman', Times, serif;
@@ -16,13 +17,21 @@ h3 {
 }
 p {
   font-size: calc(8px + 2vmin);
+  line-height: calc(8px + 2vmin);
 }
 
 .menu {
   display: flex;
 }
 
-
+.login_block {
+  display: flex;
+  font-size: calc(6px + 1vh);
+  width: 130px;
+}
+.login_block div:first-child {
+  margin-right: calc(10px + 1vh);
+}
 
 .menu__list {
   
